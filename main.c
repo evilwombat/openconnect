@@ -1975,8 +1975,8 @@ static int process_auth_form_cb(void *_vpninfo,
 		} else if (opt->type == OC_FORM_OPT_TEXT) {
 			if (username &&
 			    (!strcmp(opt->name, "username") || opt->flags & OC_FORM_OPT_FILL_USERNAME)) {
-				opt->_value = username;
-				username = NULL;
+				opt->_value = strdup(username);
+				printf("Using <%s> as username\n", username);
 			} else {
 				opt->_value = prompt_for_input(opt->label, vpninfo, 0);
 			}
